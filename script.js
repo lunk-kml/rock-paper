@@ -7,18 +7,18 @@ function getComputerChoice(){
   } else if(randomNumber===2){
     return 'scissor';
   } else {
-    console.log('Error!');
+    alert('Error!');
   }
 };
 
 
 function getPlayerChoice(){
-  var playerInput=prompt('Welcome! Do you think you can beat a computer? Make your first move. Rock, Paper, or Scissor.');
+  var playerInput=prompt('Welcome! Make your first move. Rock, Paper, or Scissor. Best out of 5 wins.');
   playerInput=playerInput.toLowerCase();
   if(playerInput==='rock' || playerInput==='paper' || playerInput==='scissor'){
     return playerInput;
   } else {
-    console.log('Error!');
+    alert('Error!');
   }
 };
 
@@ -31,9 +31,9 @@ function playRound(playerSelection,computerSelection){
     (playerSelection==='paper' && computerSelection==='rock') ||
     (playerSelection==='scissor' && computerSelection==='paper')
   ){
-    return `You won. ${playerSelection} beat ${computerSelection}. Congrats!`;
+    return `You won this round... ${playerSelection} beat ${computerSelection}!`;
   } else{
-    return `You lost. ${computerSelection} beat ${playerSelection}. Haha computers rule!`;
+    return `You lost this round... ${computerSelection} beat ${playerSelection}!`;
   }
 };
 
@@ -41,31 +41,38 @@ function game(){
     let scorePlayer = 0;
     let scoreComputer = 0;
 
-    console.log("Hello! Let's play.");
-    console.log(' ');
+    /*console.log("Hello! Let's play.");
+    console.log(' ');*/
     for (let i = 0; i < 5; i++) {
         const playerSelection = getPlayerChoice();
         const computerSelection = getComputerChoice();
-        console.log(`(Computer) My choice: ${computerSelection}. 
-(Human) Your choice: ${playerSelection}.`)
+        alert(`(Computer) My choice: ${computerSelection}. (Human) Your choice: ${playerSelection}.`);
+        console.log(`(Computer) My choice: ${computerSelection}. (Human) Your choice: ${playerSelection}.`);
+        alert(playRound(playerSelection, computerSelection));
         console.log(playRound(playerSelection, computerSelection));
         console.log(' ');
         
         let result=playRound(playerSelection, computerSelection);
-        if(result===`You won. ${playerSelection} beat ${computerSelection}. Congrats!`){
+        if(result===`You won this round... ${playerSelection} beat ${computerSelection}!`){
             scorePlayer++;
-        } else if(result===`You lost. ${computerSelection} beat ${playerSelection}. Haha computers rule!`){
+        } else if(result===`You lost this round... ${computerSelection} beat ${playerSelection}!`){
             scoreComputer++;
         }
      }
-     console.log('Game Over!');
+     
      
      if (scorePlayer > scoreComputer) {
-        console.log("You are the overall winner!");
+        alert("You scored more wins. You are the overall winner!");
+        console.log("You scored more wins. You are the overall winner!");
       } else if (scorePlayer < scoreComputer) {
-        console.log("You lost! I am the overall winner. Computers rules!");
+        alert("You lost! I scored more wins. Computers rules!");
+        console.log("You lost! I scored more wins. Computers rules!");
       } else {
+        alert("It's a tie game.");
         console.log("It's a tie game.");
       }
+
+      alert('Game Over!');
+      console.log('Game Over!');
 };
 console.log(game());
